@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mock_login/providers/password_visiblite.dart';
 import 'package:mock_login/screens/components/body.dart';
 import 'package:mock_login/screens/home/home_screen.dart';
 import 'package:mock_login/screens/signup/signup_screen.dart';
@@ -27,7 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final passwordNotifier = Provider.of<PasswordNotifier>(context);
     Size size = MediaQuery.of(context).size;
     //final visibilty = Provider.of<PasswordNotifier>(context);
     return Scaffold(
@@ -107,7 +105,6 @@ class _LoginScreenState extends State<LoginScreen> {
               HaveAnAccount(
                 text: 'Don\'t have an account ? Create one!',
                 onTap: () {
-                  passwordNotifier.setVisibility(true);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SignUpScreen()));
                 },
