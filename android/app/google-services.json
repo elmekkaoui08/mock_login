@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "511999679413",
+    "project_id": "mock-login-42d51",
+    "storage_bucket": "mock-login-42d51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511999679413:android:20c803ac5f3348565a57fc",
+        "android_client_info": {
+          "package_name": "com.example.mock_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511999679413-l6vhhh6ej6461uc942do3ee7qba2234l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsoe3Bp0SWkVxbioFob_il10T5RBOUHJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511999679413-l6vhhh6ej6461uc942do3ee7qba2234l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
