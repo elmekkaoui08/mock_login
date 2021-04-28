@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mock_login/providers/google_signin.dart';
+import 'package:mock_login/providers/google_signin_bloc.dart';
 import 'package:mock_login/screens/home/home_screen.dart';
 import 'package:mock_login/shared/constants.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +11,8 @@ class SocialMediaItems extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext buildContext) {
+    final size = MediaQuery.of(buildContext).size;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -21,18 +22,13 @@ class SocialMediaItems extends StatelessWidget {
         ),
         SocialMediaItem(
           onTap: () async {
-            final googleSignIn =
-                Provider.of<GoogleSignInProvider>(context, listen: false);
-            // googleSignIn.logout();
-            await googleSignIn.login();
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeScreen(),
-                ),
-                (route) => false);
-
-            print('Connected !');
+            buildContext.read<AuthentificationBloc>().add(SignInEvent());
+            Navigator.pushReplacement(
+              buildContext,
+              MaterialPageRoute(
+                builder: (context) => HomeScreen(),
+              ),
+            );
           },
           svgPath: 'assets/icons/google-plus.svg',
         ),
@@ -57,22 +53,20 @@ class SocialMediaItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(20),
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-          border: Border.all(
-            width: 2,
-            color: kPrimaryLightColor,
-          ),
+          border: Border.all(width: 2, color: kPrimaryColor),
+          color: kPrimaryLightColor,
           shape: BoxShape.circle,
         ),
         child: SvgPicture.asset(
           svgPath,
           color: kPrimaryColor,
-          width: size.width * 0.04,
+          width: size.width * 0.06,
         ),
       ),
     );

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class OrDivider extends StatelessWidget {
+  const OrDivider({this.textSparator});
+  final String textSparator;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -14,7 +16,7 @@ class OrDivider extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
-              'OR',
+              textSparator ?? 'OR',
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

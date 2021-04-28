@@ -33,9 +33,12 @@ class WelcomeScreen extends StatelessWidget {
           'assets/icons/chat.svg',
           width: size.width * 0.8,
         ),
-        title: 'Welcome to EDU',
+        title: 'Welcome to WeChat',
         child: Column(
           children: [
+            SizedBox(
+              height: size.height * .08,
+            ),
             RoundedButton(
               text: 'Login',
               textColor: Colors.white,
@@ -58,10 +61,6 @@ class WelcomeScreen extends StatelessWidget {
               },
               buttonColor: kPrimaryLightColor,
             ),
-            PasswordTextField(
-              onChanged: (value) {},
-              onSuffixTap: () {},
-            )
           ],
         ),
       ),

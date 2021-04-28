@@ -33,6 +33,7 @@ class HomeScreen extends StatelessWidget {
           ),
           elevation: 0,
           backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
           actions: [
             Padding(
               padding: EdgeInsets.only(right: 10),
