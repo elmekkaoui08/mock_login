@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mock_login/screens/components/background.dart';
 
 class Body extends StatelessWidget {

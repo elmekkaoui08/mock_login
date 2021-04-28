@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class Users {
   String _username, _email, _password;
   String name, imageUrl;
