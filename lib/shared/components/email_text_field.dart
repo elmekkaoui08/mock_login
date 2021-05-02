@@ -12,7 +12,17 @@ class EmailTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CostumTextField(
-        icon: Icons.person,
+        validator: (value) {
+          bool emailValid = RegExp(
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+              .hasMatch(value);
+          if (value == null || value.isEmpty || !emailValid) {
+            return 'Invalid Email';
+          } else {
+            return null;
+          }
+        },
+        icon: Icons.email,
         hintText: 'example@domain.com',
         keyboardType: TextInputType.emailAddress,
         onChange: onChanged);

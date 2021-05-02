@@ -21,10 +21,17 @@ class PasswordTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PasswordBloc, bool>(
       builder: (context, state) => CostumTextField(
+        validator: (value) {
+          if (value == null || value.isEmpty || value.toString().length < 6) {
+            return 'Invalid Password';
+          } else {
+            return null;
+          }
+        },
         icon: Icons.lock,
-        suffixIcon: state ? Icons.visibility : Icons.visibility_off,
+        suffixIcon: !state ? Icons.visibility : Icons.visibility_off,
         hintText: 'Password',
-        isObscure: state,
+        isObscure: !state,
         onSuffixTap: () {
           context
               .read<PasswordBloc>()

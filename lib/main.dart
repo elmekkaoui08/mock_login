@@ -6,27 +6,14 @@ import 'package:mock_login/providers/google_signin_bloc.dart';
 import 'package:mock_login/providers/password_bloc.dart';
 import 'package:mock_login/repositories/google_auth_repo.dart';
 import 'package:mock_login/screens/welcome/welcome_screen.dart';
-import 'package:mock_login/shared/constants.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
-    /*MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => PasswordNotifier(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => GoogleSignInProvider(),
-        )
-      ],
-      child: AuthApp(),
-    ),*/
     MultiBlocProvider(
       providers: [
-        // BlocProvider(create: (_) => PasswordCubit(false)),
-        BlocProvider(create: (_) => PasswordBloc(true)),
+        BlocProvider(create: (_) => PasswordBloc(false)),
         BlocProvider(
           create: (_) => AuthentificationBloc(
             SigningState(
@@ -35,23 +22,27 @@ Future<void> main() async {
                 errorMessage: ''),
             GoogleAuthRepo(),
           ),
-        )
+        ),
       ],
       child: AuthApp(),
     ),
   );
 }
 
-class AuthApp extends StatelessWidget {
+class AuthApp extends StatefulWidget {
+  @override
+  _AuthAppState createState() => _AuthAppState();
+}
+
+class _AuthAppState extends State<AuthApp> {
+  ThemeData theme = ThemeData.dark();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Authentification App',
       home: WelcomeScreen(),
-      theme: ThemeData(
-        primaryColor: kPrimaryColor,
-      ),
+      // theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: kDrakModeColor),
     );
   }
 }

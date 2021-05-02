@@ -34,8 +34,14 @@ class GoogleAuthRepo {
 
   Future<void> logout() async {
     setSignIn(true);
-    await googleSignIn.disconnect();
+    if (await googleSignIn.isSignedIn()) await googleSignIn.disconnect();
     await FirebaseAuth.instance.signOut();
     setSignIn(false);
+  }
+
+  Future loginWithEmail(String email, String password) async {
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
+    setSignIn(true);
   }
 }

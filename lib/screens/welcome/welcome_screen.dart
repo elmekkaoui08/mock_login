@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mock_login/screens/components/body.dart';
 import 'package:mock_login/screens/login/login_screen.dart';
 import 'package:mock_login/screens/signup/signup_screen.dart';
-import 'package:mock_login/shared/components/password_text_field.dart';
 import 'package:mock_login/shared/components/rounded_button.dart';
 import 'package:mock_login/shared/constants.dart';
 
@@ -33,7 +32,7 @@ class WelcomeScreen extends StatelessWidget {
           'assets/icons/chat.svg',
           width: size.width * 0.8,
         ),
-        title: 'Welcome to WeChat',
+        title: 'WeChat',
         child: Column(
           children: [
             SizedBox(

@@ -11,6 +11,7 @@ class CostumTextField extends StatelessWidget {
     this.suffixIcon,
     this.onSuffixTap,
     this.keyboardType,
+    this.validator,
   }) : super(key: key);
 
   final String hintText;
@@ -20,6 +21,7 @@ class CostumTextField extends StatelessWidget {
   final Function onChange;
   final Function onSuffixTap;
   final TextInputType keyboardType;
+  final Function validator;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,8 @@ class CostumTextField extends StatelessWidget {
         color: kPrimaryLightColor,
         borderRadius: BorderRadius.circular(29),
       ),
-      child: TextField(
+      child: TextFormField(
+        validator: validator,
         onChanged: onChange,
         obscureText: isObscure,
         keyboardType: keyboardType,

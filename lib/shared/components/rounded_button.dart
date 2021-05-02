@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mock_login/shared/constants.dart';
 
 class RoundedButton extends StatelessWidget {
@@ -6,12 +7,14 @@ class RoundedButton extends StatelessWidget {
   final Color buttonColor;
   final Color textColor;
   final Function pressed;
+  final bool isSignWithGoogle;
 
   const RoundedButton({
     @required this.text,
     this.textColor = Colors.white,
     @required this.pressed,
     this.buttonColor = kPrimaryColor,
+    this.isSignWithGoogle = false,
   });
 
   @override
@@ -30,13 +33,28 @@ class RoundedButton extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(buttonColor),
           ),
           onPressed: pressed,
-          child: Text(
-            text,
-            style: TextStyle(
-              color: textColor,
-              fontSize: size.width * 0.05,
-              fontWeight: FontWeight.w600,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              isSignWithGoogle
+                  ? Container(
+                      margin: EdgeInsets.only(right: 20),
+                      child: SvgPicture.asset(
+                        'assets/icons/google-plus.svg',
+                        width: size.width * 0.08,
+                        color: Colors.red,
+                      ),
+                    )
+                  : Container(),
+              Text(
+                text,
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: size.width * 0.05,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
         ),
       ),
