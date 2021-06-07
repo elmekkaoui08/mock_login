@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mock_login/shared/components/costum_text_input.dart';
+
+import 'costum_text_input.dart';
 
 class EmailTextField extends StatelessWidget {
   const EmailTextField({

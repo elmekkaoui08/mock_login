@@ -1,37 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mock_login/providers/google_signin_bloc.dart';
-import 'package:mock_login/screens/components/body.dart';
-import 'package:mock_login/screens/error/error_screen.dart';
-import 'package:mock_login/screens/home/home_screen.dart';
-import 'package:mock_login/screens/login/login_screen.dart';
-import 'package:mock_login/shared/components/costum_text_input.dart';
-import 'package:mock_login/shared/components/email_text_field.dart';
-import 'package:mock_login/shared/components/have_an_account.dart';
-import 'package:mock_login/shared/components/or_divider.dart';
-import 'package:mock_login/shared/components/password_text_field.dart';
-import 'package:mock_login/shared/components/rounded_button.dart';
-import 'package:mock_login/shared/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+
 import '../../models/users.dart';
+import '../../providers/google_signin_bloc.dart';
+import '../../shared/components/costum_text_input.dart';
+import '../../shared/components/email_text_field.dart';
+import '../../shared/components/have_an_account.dart';
+import '../../shared/components/or_divider.dart';
+import '../../shared/components/password_text_field.dart';
+import '../../shared/components/rounded_button.dart';
+import '../../shared/constants.dart';
+import '../components/body.dart';
+import '../error/error_screen.dart';
+import '../login/login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
+  static final route = '/signup';
   final Users user = Users();
   @override
   Widget build(BuildContext context) {
-    context.read<AuthentificationBloc>().stream.listen((event) {
-      print('---------- Stream called ----------------');
-      if (event.requestState == RequestState.SIGNED) {
-        //Navigator.pop(context);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-          ),
-        );
-      }
-    });
+    print('------------- Buildiing sign up screen --------------');
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: BlocBuilder<AuthentificationBloc, SigningState>(

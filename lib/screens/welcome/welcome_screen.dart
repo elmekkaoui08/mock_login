@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mock_login/screens/components/body.dart';
-import 'package:mock_login/screens/login/login_screen.dart';
-import 'package:mock_login/screens/signup/signup_screen.dart';
-import 'package:mock_login/shared/components/rounded_button.dart';
-import 'package:mock_login/shared/constants.dart';
+
+import '../../shared/components/rounded_button.dart';
+import '../../shared/constants.dart';
+import '../components/body.dart';
+import '../login/login_screen.dart';
+import '../signup/signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  static final route = '/welcome';
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -42,8 +44,8 @@ class WelcomeScreen extends StatelessWidget {
               text: 'Login',
               textColor: Colors.white,
               pressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()));
+                Navigator.pushNamedAndRemoveUntil(
+                    context, LoginScreen.route, (route) => false);
               },
               buttonColor: kPrimaryColor,
             ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mock_login/providers/password_bloc.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/password_bloc.dart';
 import 'costum_text_input.dart';
 
 class PasswordTextField extends StatelessWidget {

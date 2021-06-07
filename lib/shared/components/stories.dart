@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mock_login/dummy_data/data.dart';
 
+import '../../dummy_data/data.dart';
 import '../constants.dart';
 
 class Stories extends StatelessWidget {

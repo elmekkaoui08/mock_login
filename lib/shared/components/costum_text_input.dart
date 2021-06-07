@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mock_login/shared/constants.dart';
+
+import '../constants.dart';
 
 class CostumTextField extends StatelessWidget {
   const CostumTextField({

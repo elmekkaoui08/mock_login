@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mock_login/models/users.dart';
-import 'package:mock_login/shared/components/or_divider.dart';
-import 'package:mock_login/shared/constants.dart';
+
+import '../../models/users.dart';
+import '../constants.dart';
 
 class SingleItemChatPage extends StatelessWidget {
   final Users user;

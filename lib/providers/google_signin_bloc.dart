@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:mock_login/models/users.dart';
-import 'package:mock_login/repositories/google_auth_repo.dart';
+
+import '../models/users.dart';
+import '../repositories/google_auth_repo.dart';
 
 abstract class GoogleAuthEvents {}
 
@@ -10,12 +11,18 @@ class SignInWithGoogleEvent extends GoogleAuthEvents {}
 
 class SignInWithEmailPasswordEvent extends GoogleAuthEvents {
   String email, password;
-  SignInWithEmailPasswordEvent({@required this.email, @required this.password});
+  SignInWithEmailPasswordEvent({
+    @required this.email,
+    @required this.password,
+  });
 }
 
 class SignUpWithEmailPasswordEvent extends GoogleAuthEvents {
   String email, password;
-  SignUpWithEmailPasswordEvent({@required this.email, @required this.password});
+  SignUpWithEmailPasswordEvent({
+    @required this.email,
+    @required this.password,
+  });
 }
 
 class SignOutEvent extends GoogleAuthEvents {}
@@ -27,7 +34,11 @@ class SigningState {
   RequestState requestState;
   String errorMessage;
 
-  SigningState({this.user, this.requestState, this.errorMessage});
+  SigningState({
+    this.user,
+    this.requestState,
+    this.errorMessage,
+  });
 }
 
 class AuthentificationBloc extends Bloc<GoogleAuthEvents, SigningState> {

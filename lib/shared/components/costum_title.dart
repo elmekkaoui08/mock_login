@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mock_login/shared/constants.dart';
+
+import '../constants.dart';
 
 class CostumTitle extends StatelessWidget {
   const CostumTitle({

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mock_login/dummy_data/data.dart';
-import 'package:mock_login/shared/components/single_item_chat.dart';
+
+import '../../dummy_data/data.dart';
+import 'single_item_chat.dart';
 
 class ChatItems extends StatelessWidget {
   const ChatItems({

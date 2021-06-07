@@ -1,4 +1,4 @@
-import 'package:mock_login/models/users.dart';
+import '../models/users.dart';
 
 List storyList = [
   {

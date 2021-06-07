@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mock_login/screens/components/background.dart';
+
+import 'background.dart';
 
 class Body extends StatelessWidget {
   final Widget child;

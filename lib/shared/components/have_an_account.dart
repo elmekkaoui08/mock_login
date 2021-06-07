@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mock_login/shared/constants.dart';
+
+import '../constants.dart';
 
 class HaveAnAccount extends StatelessWidget {
   const HaveAnAccount({

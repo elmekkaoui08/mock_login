@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mock_login/shared/components/rounded_button.dart';
-import 'package:mock_login/shared/constants.dart';
+
+import '../../shared/components/rounded_button.dart';
+import '../../shared/constants.dart';
 
 class ErrorScreen extends StatelessWidget {
   const ErrorScreen({Key key, @required this.errorMessage}) : super(key: key);

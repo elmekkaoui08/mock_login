@@ -1,48 +1,117 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mock_login/providers/google_signin_bloc.dart';
-import 'package:mock_login/shared/components/costum_scaffold.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mock_login/screens/widgets/calls_widget.dart';
+import 'package:mock_login/screens/widgets/camera_widget.dart';
+import 'package:mock_login/screens/widgets/chat_widget.dart';
+import 'package:mock_login/screens/widgets/settings_widget.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../../providers/google_signin_bloc.dart';
+import '../../shared/components/costum_home_appbar.dart';
+import '../../shared/constants.dart';
+import '../error/error_screen.dart';
+
+class HomeScreen extends StatefulWidget {
+  static final route = '/home';
+
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AuthentificationBloc, SigningState>(
-      builder: (context, state) {
-        if (state.requestState == RequestState.SIGNING) {
-          return IndecatorScaffold();
-        } else if (state.requestState == RequestState.ERROR) {
-          return ErrorScaffold(
-            errorMessage: state.errorMessage,
-          );
-        } else if (state.requestState == RequestState.SIGNED) {
-          return HomeScreenScaffold();
-        } else {
-          return Scaffold();
-        }
-      },
-    );
-  }
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class ErrorScaffold extends StatelessWidget {
-  const ErrorScaffold({
-    Key key,
-    @required this.errorMessage,
-  }) : super(key: key);
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
 
-  final String errorMessage;
+  List<Widget> _widgetOptions = [
+    ChatWidget(),
+    CallsWidget(),
+    CameraWidget(),
+    SettingWidget(),
+  ];
+
+  _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      print('index: $index');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    print('------------- Buildiing home screen --------------');
+    final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Error : $errorMessage'),
+        appBar: AppBar(
+          title: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            child: Text(
+              'Messages',
+              style: GoogleFonts.tajawal(
+                color: kPrimaryColor,
+                fontWeight: FontWeight.w500,
+                fontSize: 30,
+              ),
+            ),
+          ),
+          elevation: 0,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          automaticallyImplyLeading: false,
+          actions: [
+            AppBarAction(
+              icon: Icons.logout,
+              onTap: () {
+                BlocProvider.of<AuthentificationBloc>(context)
+                    .add(SignOutEvent());
+              },
+            ),
           ],
         ),
-      ),
-    );
+        body: BlocBuilder<AuthentificationBloc, SigningState>(
+          builder: (context, state) => ModalProgressHUD(
+            inAsyncCall: state.requestState == RequestState.SIGNING,
+            child: state.requestState == RequestState.ERROR
+                ? ErrorScreen(errorMessage: state.errorMessage)
+                : _widgetOptions.elementAt(_selectedIndex),
+          ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  'assets/icons/chat_icon.svg',
+                  width: size.width * 0.08,
+                  color: kPrimaryColor,
+                ),
+                label: ''),
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  'assets/icons/phone_icon.svg',
+                  width: size.width * 0.08,
+                  color: kPrimaryColor,
+                ),
+                label: ''),
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  'assets/icons/camera_icon.svg',
+                  width: size.width * 0.08,
+                  color: kPrimaryColor,
+                ),
+                label: ''),
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  'assets/icons/settings_icon.svg',
+                  width: size.width * 0.08,
+                  color: kPrimaryColor,
+                ),
+                label: '')
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
+          elevation: 0,
+        ));
   }
 }
